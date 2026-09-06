@@ -9,7 +9,7 @@ allowed-tools:
   - AskUserQuestion
   - Workflow
 model: opus
-effort: xhigh
+effort: high
 description: |
   Совет 16 AI-советников на основе книг по продуктовому строительству.
   Каждый советник анализирует запрос через призму одной книги, затем validator

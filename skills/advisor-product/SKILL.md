@@ -1,5 +1,5 @@
 ---
-name: adv-product
+name: advisor-product
 user-invocable: true
 argument-hint: "<ваш вопрос по продуктовому строительству, PMF, pricing, operations>"
 allowed-tools:
@@ -20,7 +20,7 @@ description: |
   Start Small Stay Small (Walling), The Embedded Entrepreneur (Kahl),
   The SaaS Playbook (Walling), Zero to Sold (Kahl), Rework (Fried/DHH),
   Authority (Barry), Million Dollar Weekend (Kagan).
-  Invoke via /advisors:adv-product со своим вопросом.
+  Invoke via /advisor-product со своим вопросом.
   English triggers: product building, product-market fit, PMF, pricing strategy,
   unit economics, SaaS metrics, churn reduction, retention strategy, niche selection,
   customer interviews, customer development, bootstrapping, exit strategy,
@@ -46,7 +46,7 @@ description: |
 
 ```
 PLUGIN_ROOT = ${CLAUDE_PLUGIN_ROOT}
-MEMORY_DIR  = ${user_config.ADVISORS_MEMORY_DIR}
+MEMORY_DIR  = ${user_config.MEMORY_DIR}
 OUTPUT_DIR  = {MEMORY_DIR}/Продукт
 PROFILE     = {MEMORY_DIR}/Профили/adv-product.md
 RUN_LOG     = {MEMORY_DIR}/Журнал советов.md
@@ -65,9 +65,9 @@ WORK_DIR    = {MEMORY_DIR}/_runs/product-{QUERY_SLUG}
 ## Phase A.0 — гейт памяти (первым, каждый запуск)
 
 1. `MEMORY_DIR` пуст **или** в нём буквально видно `${user_config` → **остановиться**:
-   > Не задана папка памяти советов. Открой `/plugin` → advisors → настройки и укажи
-   > `ADVISORS_MEMORY_DIR` (например `~/advisors-memory`), либо переустанови плагин с
-   > `--config ADVISORS_MEMORY_DIR=<путь>`. Вердикты в текущую рабочую папку совет не пишет.
+   > Не задана папка памяти советов. Открой `/plugin` → advisor-product → настройки и укажи
+   > `MEMORY_DIR` (например `~/advisors-memory`), либо переустанови плагин с
+   > `--config MEMORY_DIR=<путь>`. Вердикты в текущую рабочую папку совет не пишет.
 2. Путь начинается с `~/` → заменить `~` на `$HOME` **до любой записи**.
 3. Развернуть скелет — идемпотентно, существующие файлы не трогает; если папка создана
    впервые, сказать об этом и перечислить, что в ней появилось:
@@ -158,7 +158,7 @@ Workflow стартует в фоне и возвращает task ID. **Дож�
 Прогресс виден в `/workflows`.
 
 Советники, скептики и validator работают одним типом воркера — субагентом
-`advisors:advisor-opus` (Opus, effort high). Переопределить:
+`advisor-product:advisor-opus` (Opus, effort high). Переопределить:
 `workerOpts: { model: 'opus' }` в args.
 
 ## Phase C — WRITE

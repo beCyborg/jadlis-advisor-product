@@ -22,7 +22,7 @@ const MAX_CLAIMS = 12
 // Воркер: пиннинг Opus 5 + effort high через субагента advisor-opus.
 // Реестр агентов кэшируется на старте сессии — если субагент создан в текущей сессии,
 // оркестратор может передать workerOpts: { model: 'opus' } как фоллбэк.
-const WORKER_OPTS = A.workerOpts || { agentType: 'advisors:advisor-opus' }
+const WORKER_OPTS = A.workerOpts || { agentType: 'advisor-product:advisor-opus' }
 const w = extra => Object.assign({}, WORKER_OPTS, extra)
 
 // Хвост ролевого промпта для headless-исполнения (нет StructuredOutput — финал печатается JSON-блоком)
@@ -209,7 +209,7 @@ function skepticPrompt(claim, idx) {
 }
 
 // ── Промпт валидатора: читает канонический validator-protocol.md (источник истины) + учитывает ledger ──
-const VALIDATOR_PROTOCOL = `${PLUGIN_ROOT}/skills/adv-product/protocols/validator-protocol.md`
+const VALIDATOR_PROTOCOL = `${PLUGIN_ROOT}/skills/advisor-product/protocols/validator-protocol.md`
 function validatorPrompt(files, ledger) {
   return `Ты — синтезатор-валидатор Совета Продуктовых Советников. Ты — ЕДИНСТВЕННЫЙ синтезатор.
 
